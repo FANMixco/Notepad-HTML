@@ -1855,6 +1855,12 @@ define('session',["require", "util", "channels", "jquery", "storage"], function 
         try{
         // We do this here to make sure this is run before any other
         // hello handlers:
+
+        //Peer.updateFromHello(msg);
+        
+        //console.log(msg);
+        //console.log(msg.peer);
+
         msg.peer.updateFromHello(msg);
         }catch (e) {
           console.log(e);
@@ -2008,6 +2014,7 @@ define('session',["require", "util", "channels", "jquery", "storage"], function 
       var isClient = true;
       var set = true;
       var sessionId;
+      var isClientKey;
       session.firstRun = ! TogetherJS.startup.continued;
       if (! shareId) {
         if (TogetherJS.startup._joinShareId) {
@@ -2059,7 +2066,9 @@ define('session',["require", "util", "channels", "jquery", "storage"], function 
           return;
         } else if (TogetherJS.startup._launch) {
           if (saved) {
-            isClient = saved.reason == "joined";
+            isClientKey = storage.tab.prefix + 'isClient';
+            isClient = JSON.parse(storage.tab.storage[isClientKey]);
+            //isClient = saved.reason == "joined";
             if (! shareId) {
               shareId = saved.shareId;
             }
@@ -2496,6 +2505,70 @@ define('peers',["util", "session", "storage", "require"], function (util, sessio
       defaultName: null,
       loaded: false,
       isCreator: ! session.isClient,
+
+      updateFromHello: function (msg) {
+        var urlUpdated = false;
+        var activeRTC = false;
+        var identityUpdated = false;
+        if (msg.url && msg.url != this.url) {
+          this.url = msg.url;
+          this.hash = null;
+          this.title = null;
+          urlUpdated = true;
+        }
+        if (msg.hash != this.hash) {
+          this.hash = msg.urlHash;
+          urlUpdated = true;
+        }
+        if (msg.title != this.title) {
+          this.title = msg.title;
+          urlUpdated = true;
+        }
+        if (msg.rtcSupported !== undefined) {
+          this.rtcSupported = msg.rtcSupported;
+        }
+        if (msg.identityId !== undefined) {
+          this.identityId = msg.identityId;
+        }
+        if (msg.name && msg.name != this.name) {
+          this.name = msg.name;
+          identityUpdated = true;
+        }
+        if (msg.avatar && msg.avatar != this.avatar) {
+          util.assertValidUrl(msg.avatar);
+          this.avatar = msg.avatar;
+          identityUpdated = true;
+        }
+        if (msg.color && msg.color != this.color) {
+          this.color = msg.color;
+          identityUpdated = true;
+        }
+        if (msg.isClient !== undefined) {
+          this.isCreator = ! msg.isClient;
+        }
+        if (this.status != "live") {
+          this.status = "live";
+          peers.emit("status-updated", this);
+        }
+        if (this.idle != "active") {
+          this.idle = "active";
+          peers.emit("idle-updated", this);
+        }
+        if (msg.rtcSupported) {
+          peers.emit("rtc-supported", this);
+        }
+        if (urlUpdated) {
+          peers.emit("url-updated", this);
+        }
+        if (identityUpdated) {
+          peers.emit("identity-updated", this);
+        }
+        // FIXME: I can't decide if this is the only time we need to emit
+        // this message (and not .update() or other methods)
+        if (this.following) {
+          session.emit("follow-peer", this);
+        }
+      },
 
       update: function (attrs) {
         var updatePeers = false;

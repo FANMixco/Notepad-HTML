@@ -278,6 +278,7 @@ define(["require", "util", "channels", "jquery", "storage"], function (require, 
       var isClient = true;
       var set = true;
       var sessionId;
+      var isClientKey;
       session.firstRun = ! TogetherJS.startup.continued;
       if (! shareId) {
         if (TogetherJS.startup._joinShareId) {
@@ -329,7 +330,9 @@ define(["require", "util", "channels", "jquery", "storage"], function (require, 
           return;
         } else if (TogetherJS.startup._launch) {
           if (saved) {
-            isClient = saved.reason == "joined";
+            isClientKey = storage.tab.prefix + 'isClient';
+            isClient = JSON.parse(storage.tab.storage[isClientKey]);
+            //isClient = saved.reason == "joined";
             if (! shareId) {
               shareId = saved.shareId;
             }

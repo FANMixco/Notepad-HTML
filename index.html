@@ -1,12 +1,11 @@
-
 <html>
 <head>
 	<title>
 		Notepad in HTML
 	</title>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-	<script src="js\jquery-3.2.0.js"></script>
-	<script src="js\FileSaver.js"></script>
+	<script src="js/jquery-3.2.0.js"></script>
+	<script src="js/FileSaver.js"></script>
 	<script src="togetherjs-min.js"></script>
 	<script>
 		function onClickNew(){
@@ -50,20 +49,21 @@
   			saveAs(blob, filename);
   			delete blob;
 		}
-		TogetherJSConfig_baseURL = "https://fanmixco.github.io/Notepad-HTML";
+		TogetherJSConfig_baseURL = "https://fanmixco.github.io/Notepad-HTML/";
+		//TogetherJSConfig_baseURL = "http://127.0.0.1:8888/";
 		TogetherJSConfig_hubBase = "https://lace-truthful-forgery.glitch.me/";
         TogetherJS(this);
 	</script>
 	<style>
 		body{
-			background-image: url("img\\bk2.jpg");
+			background-image: url("img/bk2.jpg");
 			background-repeat: no-repeat;
 		}
 		textarea[id="MyText"]{
     		height: 500px;
     		width: 1200px;
     		color: White;
-    		background-image: url("img\\Joker.jpg");
+    		background-image: url("img/Joker.jpg");
     		background-size: 1200px 500px;
     		vertical-align: center;
     		position: static;
@@ -114,8 +114,8 @@
 	<a href="index.html">Note-Me</a>
 	
 	<p>
-		<input type="image" src = "img-btn\New.png" id="new" onclick="onClickNew()">
-		<input type="image" src = "img-btn\Save.png" id="save" onclick="onClickSave()"/>
+		<input type="image" src = "img-btn/New.png" id="new" onclick="onClickNew()">
+		<input type="image" src = "img-btn/Save.png" id="save" onclick="onClickSave()"/>
 		<label id="nm">File Name</label>
 		<input type="text" id="name"/>
 		<select id="ext">
@@ -125,7 +125,7 @@
 			<option value="java">Java</option>
 			<option value="html">HTML</option>
 		</select>
-		<a href="https://github.com/gabru-md/Notepad-HTML"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img\forkme_right_red_aa0000.png" alt="Fork me on GitHub" data-canonical-src="img\forkme_right_red_aa0000.png"></a>
+		<a href="https://github.com/gabru-md/Notepad-HTML"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/forkme_right_red_aa0000.png" alt="Fork me on GitHub" data-canonical-src="img/forkme_right_red_aa0000.png"></a>
 		<br><br>
 		<textarea id="MyText" name="paragraph_text" cols="50" rows="10"></textarea>
 	</p>

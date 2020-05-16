@@ -74,7 +74,7 @@
 
   var styleSheet = "/togetherjs/togetherjs.css";
 
-  var baseUrl = window["TogetherJSConfig_baseURL"] === undefined ? "https://togetherjs.com" : window["TogetherJSConfig_baseURL"];
+  var baseUrl = window["TogetherJSConfig_baseURL"] ? "https://togetherjs.com" : window["TogetherJSConfig_baseURL"];
   if (baseUrl == "__" + "baseUrl__") {
     // Reset the variable if it doesn't get substituted
     baseUrl = "";
