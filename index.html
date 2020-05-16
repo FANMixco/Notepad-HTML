@@ -7,6 +7,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 	<script src="js\jquery-3.2.0.js"></script>
 	<script src="js\FileSaver.js"></script>
+	<script src="https://togetherjs.com/togetherjs-min.js"></script>
 	<script>
 		function onClickNew(){
 			//document.getElementById("new").click();
@@ -49,6 +50,8 @@
   			saveAs(blob, filename);
   			delete blob;
 		}
+		TogetherJSConfig_hubBase = "https://lace-truthful-forgery.glitch.me/";
+                TogetherJS(this);
 	</script>
 	<style>
 		body{
