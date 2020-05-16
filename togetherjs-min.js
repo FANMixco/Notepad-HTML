@@ -3,6 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*jshint scripturl:true */
+var url = "";
 (function () {
 
   var defaultConfiguration = {
@@ -74,7 +75,7 @@
 
   var styleSheet = "/togetherjs/togetherjs.css";
 
-  var baseUrl = window.location.href.substring(0, window.location.href.length - 1); //"https://togetherjs.com";
+  var baseUrl = window["TogetherJSConfig_baseURL"] === undefined ? "https://togetherjs.com" : window["TogetherJSConfig_baseURL"];
   if (baseUrl == "__" + "baseUrl__") {
     // Reset the variable if it doesn't get substituted
     baseUrl = "";
