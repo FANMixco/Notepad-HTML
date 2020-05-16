@@ -1,0 +1,51 @@
+body{
+    background-image: url("../img/bk2.jpg");
+    background-repeat: no-repeat;
+}
+textarea[id="MyText"]{
+    height: 500px;
+    width: 1200px;
+    color: White;
+    background-image: url("../img/Joker.jpg");
+    background-size: 1200px 500px;
+    vertical-align: center;
+    position: static;
+    resize: none;
+    margin-left: 75px;
+}
+input[id="new"]{
+    margin-left: 75px;
+    height: 30px;
+    width: 30px;
+}
+input[id="save"]{
+    margin-left: 15px;
+    height: 30px;
+    width: 30px;
+}
+a{
+    margin-left: 580px;
+    color: LightGrey;
+    font-size: 30px;
+    font-style: 4;
+}
+p[id="footer"]{
+    margin-left: 525px;
+    color : Black;
+    font-size: 15px;
+}
+p[id="footer2"]{
+    margin-left: 560px;
+    color : BLACK;
+    font-size: 15px
+}
+select[id="ext"]{
+    margin-left:0px;
+}
+input[id="name"]{
+    margin-left: 0px;
+}
+label[id="nm"]{
+    margin-left: 695px;
+    color: White;
+}

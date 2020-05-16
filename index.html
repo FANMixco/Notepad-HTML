@@ -1,112 +1,21 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>
-		Notepad in HTML
-	</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Notepad in HTML</title>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 	<script src="js/jquery-3.2.0.js"></script>
 	<script src="js/FileSaver.js"></script>
+	<script src="js/notepad.js"></script>
 	<script src="togetherjs-min.js"></script>
 	<script>
-		function onClickNew(){
-			//document.getElementById("new").click();
-			document.getElementById("MyText").value = ""
-			document.getElementById("name").value = ""
-			//var fetchp = document.getElementById("div1");
-			//var pp = document.createElement("p")
-			//console.log(document.getElementById("MyText").value)
-			//var node = document.createTextNode(document.getElementById("MyText").value);
-			//pp.appendChild(node);
-			//fetchp.appendChild(pp);
-		}
-	</script>
-	<script>
-		function onClickSave(){
-			var para = document.getElementById("MyText").value
-			console.log(para)
-			var ext = document.getElementById("ext").value
-			var filename
-			if(ext == "python"){
-				filename = document.getElementById("name").value + ".py"
-				console.log(filename)
-			}
-			else if(ext == "text"){
-				filename = document.getElementById("name").value + ".txt"
-				console.log(filename)
-			}
-			else if(ext == "java"){
-				filename = document.getElementById("name").value + ".java"
-				console.log(filename)
-			}
-			else if(ext == "cpp"){
-				filename = document.getElementById("name").value + ".cpp"
-				console.log(filename)
-			}
-			else{
-				filename = document.getElementById("name").value + ".html"
-			}
-			var blob = new Blob([para], {type: "text/plain;charset=utf-8"});
-  			saveAs(blob, filename);
-  			delete blob;
-		}
 		TogetherJSConfig_baseURL = "https://fanmixco.github.io/Notepad-HTML/";
 		//TogetherJSConfig_baseURL = "http://127.0.0.1:8888/";
 		TogetherJSConfig_hubBase = "https://lace-truthful-forgery.glitch.me/";
         TogetherJS(this);
 	</script>
-	<style>
-		body{
-			background-image: url("img/bk2.jpg");
-			background-repeat: no-repeat;
-		}
-		textarea[id="MyText"]{
-    		height: 500px;
-    		width: 1200px;
-    		color: White;
-    		background-image: url("img/Joker.jpg");
-    		background-size: 1200px 500px;
-    		vertical-align: center;
-    		position: static;
-    		resize: none;
-    		margin-left: 75px;
-		}
-		input[id="new"]{
-			margin-left: 75px;
-			height: 30px;
-			width: 30px;
-		}
-		input[id="save"]{
-			margin-left: 15px;
-			height: 30px;
-			width: 30px;
-		}
-		a{
-			margin-left: 580px;
-			color: LightGrey;
-			font-size: 30px;
-			font-style: 4;
-		}
-		p[id="footer"]{
-			margin-left: 525px;
-			color : Black;
-			font-size: 15px;
-		}
-		p[id="footer2"]{
-			margin-left: 560px;
-			color : BLACK;
-			font-size: 15px
-		}
-		select[id="ext"]{
-			margin-left:0px;
-		}
-		input[id="name"]{
-			margin-left: 0px;
-		}
-		label[id="nm"]{
-			margin-left: 695px;
-			color: White;
-		}
-	</style>
+	<link href="css/index.css" rel="stylesheet" />
 </head>
 
 
@@ -126,13 +35,11 @@
 			<option value="html">HTML</option>
 		</select>
 		<a href="https://github.com/gabru-md/Notepad-HTML"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/forkme_right_red_aa0000.png" alt="Fork me on GitHub" data-canonical-src="img/forkme_right_red_aa0000.png"></a>
-		<br><br>
+		<br/><br/>
 		<textarea id="MyText" name="paragraph_text" cols="50" rows="10"></textarea>
 	</p>
 	<p id="footer">Made with sheer Knowledge!</p>
 	<p id="footer2">-Manish Devgan</p> 
-	</p>
-	<div id="div1">
-	</div>
+	<div id="div1"></div>
 </body>
 </html>

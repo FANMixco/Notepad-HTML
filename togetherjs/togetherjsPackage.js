@@ -4182,7 +4182,7 @@ define('elementFinder',["util", "jquery"], function (util, $) {
         break;
       }
       if (children[i].nodeType == document.ELEMENT_NODE) {
-        if (children[i].className.indexOf("togetherjs") != -1) {
+        if (children[i].className.indexOf && children[i].className.indexOf("togetherjs") != -1) {
           // Don't count our UI
           continue;
         }
@@ -4287,7 +4287,7 @@ define('elementFinder',["util", "jquery"], function (util, $) {
       for (var i=0; i<children.length; i++) {
         var child = children[i];
         if (child.nodeType == document.ELEMENT_NODE) {
-          if (child.className.indexOf("togetherjs") != -1) {
+          if (children[i].className.indexOf && children[i].className.indexOf("togetherjs") != -1) {
             continue;
           }
           count--;
@@ -6977,10 +6977,18 @@ define('cursor',["jquery", "ui", "util", "session", "elementFinder", "tinycolor"
         this.atOtherUrl = false;
       }
       if (pos.element) {
-        var target = $(elementFinder.findElement(pos.element));
-        var offset = target.offset();
-        top = offset.top + pos.offsetY;
-        left = offset.left + pos.offsetX;
+        try {
+          var target = $(elementFinder.findElement(pos.element));
+          var offset = target.offset();
+          top = offset.top + pos.offsetY;
+          left = offset.left + pos.offsetX;
+        } catch (e) {
+          if (e instanceof elementFinder.CannotFind) {
+            top = pos.top;
+            left = pos.left;
+          } else
+            throw e;
+        }
       } else {
         // No anchor, just an absolute position
         top = pos.top;
@@ -7150,6 +7158,8 @@ define('cursor',["jquery", "ui", "util", "session", "elementFinder", "tinycolor"
     var offsetY = pageY - offset.top;
     lastMessage = {
       type: "cursor-update",
+      top: pageY,
+      left: pageX,
       element: elementFinder.elementLocation(target),
       offsetX: Math.floor(offsetX),
       offsetY: Math.floor(offsetY)
