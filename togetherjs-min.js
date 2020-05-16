@@ -3,7 +3,6 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*jshint scripturl:true */
-var url = "";
 (function () {
 
   var defaultConfiguration = {
