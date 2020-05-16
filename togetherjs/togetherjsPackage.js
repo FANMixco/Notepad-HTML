@@ -2189,6 +2189,11 @@ define('session',["require", "util", "channels", "jquery", "storage"], function 
     if (includeHashInUrl) {
       $(window).on("hashchange", hashchangeEvent);
     }
+    storage.tab.get('isClient').then(function(client) {
+      if (typeof (client) === 'undefined') {
+        storage.tab.set('isClient', session.isClient);
+      }
+    });
   });
 
   session.on("close", function () {
