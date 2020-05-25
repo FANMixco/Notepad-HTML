@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-define(["jquery"], function ($) {
+ define(["jquery"], function ($) {
   // This isn't really a "module" since it just patches jQuery itself
 
   // FIX ME Animations TO DO
@@ -76,23 +76,23 @@ define(["jquery"], function ($) {
         });
 
         //starting position for arrow
-        $('#togetherjs-window-pointer-right').css({
+        $('#togetherjs-window-pointer').css({
           left: "+=74px",
           opacity: 1,
           "zIndex": 8888
         });
 
         //animate arrow out
-        $('#togetherjs-window-pointer-right').animate({
+        $('#togetherjs-window-pointer').animate({
           opacity: 1,
           left: "-=78px"
         }, {
           duration:60, easing:"linear"
         });
-        $('#togetherjs-window-pointer-right').queue();
+        $('#togetherjs-window-pointer').queue();
 
         //bounce arrow back
-        $('#togetherjs-window-pointer-right').animate({
+        $('#togetherjs-window-pointer').animate({
           left:'+=4px'
         }, {
           duration:60, easing:"linear"
@@ -114,57 +114,107 @@ define(["jquery"], function ($) {
           duration:60, easing:"linear"
         });
     }
-
+    
     else {
+      const ifacePos = require("ui").panelPosition()
+      const isRight = (ifacePos == "right")
+      const pointer = $('#togetherjs-window-pointer')
+  
+      if (isRight || (ifacePos == "left")) {
+        //starting position
+        this.css({
+          left: isRight ? "+=74px" : "-=74px",
+          opacity: 1,
+          "zIndex": 8888
+        });
 
-      //starting position
-      this.css({
-        left: "+=74px",
-        opacity: 1,
-        "zIndex": 8888
-      });
+        //starting position for arrow
+        pointer.css({
+          left: isRight ? "+=74px" : "-=74px",
+          opacity: 1,
+          "zIndex": 8888
+        });
 
-      //starting position for arrow
-      $('#togetherjs-window-pointer-right').css({
-        left: "+=74px",
-        opacity: 1,
-        "zIndex": 8888
-      });
+        //animate arrow out
+        pointer.animate({
+          opacity: 1,
+          left: isRight ? "-=78px" : "+=78px"
+        }, {
+          duration: 60, easing: "linear"
+        });
+        pointer.queue();
 
-      //animate arrow out
-      $('#togetherjs-window-pointer-right').animate({
-        opacity: 1,
-        left: "-=78px"
-      }, {
-        duration:60, easing:"linear"
-      });
-      $('#togetherjs-window-pointer-right').queue();
+        //bounce arrow back
+        pointer.animate({
+          left: isRight ? '+=4px' : '-=4px'
+        }, {
+          duration: 60, easing: "linear"
+        });
 
-      //bounce arrow back
-      $('#togetherjs-window-pointer-right').animate({
-        left:'+=4px'
-      }, {
-        duration:60, easing:"linear"
-      });
+        //animate window out
+        this.animate({
+          opacity: 1,
+          left: isRight ? "-=78px" : "+=78px"
+        }, {
+          duration: 60, easing: "linear"
+        });
+        this.queue();
 
-      //animate window out
-      this.animate({
-        opacity: 1,
-        left: "-=78px"
-      }, {
-        duration:60, easing:"linear"
-      });
-      this.queue();
+        //bounce window back
+        this.animate({
+          left: isRight ? '+=4px' : '-=4px'
+        }, {
+          duration: 60, easing: "linear"
+        });
+      } else {
+        const isBottom = (ifacePos == "bottom")
+        //starting position
+        this.css({
+          top: isBottom ? "+=74px" : "-=74px",
+          opacity: 1,
+          "zIndex": 8888
+        });
 
-      //bounce window back
-      this.animate({
-        left:'+=4px'
-      }, {
-        duration:60, easing:"linear"
-      });
+        //starting position for arrow
+        pointer.css({
+          top: isBottom ? "+=74px" : "-=74px",
+          opacity: 1,
+          "zIndex": 8888
+        });
 
+        //animate arrow out
+        pointer.animate({
+          opacity: 1,
+          top: isBottom ? "-=78px" : "+=78px"
+        }, {
+          duration: 60, easing: "linear"
+        });
+        pointer.queue();
+
+        //bounce arrow back
+        pointer.animate({
+          top: isBottom ? '+=4px' : '-=4px'
+        }, {
+          duration: 60, easing: "linear"
+        });
+
+        //animate window out
+        this.animate({
+          opacity: 1,
+          top: isBottom ? "-=78px" : "+=78px"
+        }, {
+          duration: 60, easing: "linear"
+        });
+        this.queue();
+
+        //bounce window back
+        this.animate({
+          top: isBottom ? '+=4px' : '-=4px'
+        }, {
+          duration: 60, easing: "linear"
+        });
+      }
     }
-
   };
 
   /* Slide in notification window: */
