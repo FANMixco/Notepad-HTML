@@ -4952,7 +4952,7 @@
           // });
     
           //replace the anchor icon
-          var src = "/togetherjs/images/togetherjs-logo-close.png";
+          var src = TogetherJS.baseUrl + "/togetherjs/images/togetherjs-logo-close.png";
           $("#togetherjs-dock-anchor #togetherjs-dock-anchor-horizontal img").attr("src", src);
         }
     
@@ -4965,7 +4965,7 @@
           });
     
           //replace the anchor icon
-          var src = "/togetherjs/images/togetherjs-logo-open.png";
+          var src = TogetherJS.baseUrl + "/togetherjs/images/togetherjs-logo-open.png";
           $("#togetherjs-dock-anchor #togetherjs-dock-anchor-horizontal img").attr("src", src);
     
           $('.togetherjs-window').animate({
