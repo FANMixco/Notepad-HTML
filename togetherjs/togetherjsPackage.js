@@ -1905,17 +1905,11 @@ define('session',["require", "util", "channels", "jquery", "storage"], function 
       }
       if (msg.type == "hello" || msg.type == "hello-back" || msg.type == "peer-update") {
         try{
-        // We do this here to make sure this is run before any other
-        // hello handlers:
-
-        //Peer.updateFromHello(msg);
-        
-        //console.log(msg);
-        //console.log(msg.peer);
-
-        msg.peer.updateFromHello(msg);
+          // We do this here to make sure this is run before any other
+          // hello handlers:
+          msg.peer.updateFromHello(msg);
         }catch (e) {
-          console.log(e);
+          console.warn(e);
         }
       }
       if (msg.peer) {
