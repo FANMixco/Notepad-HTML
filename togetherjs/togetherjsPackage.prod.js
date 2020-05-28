@@ -1879,7 +1879,7 @@
     
       function openChannel() {
         assert(! channel, "Attempt to re-open channel");
-        console.info("Connecting to", session.hubUrl(), location.href);
+        //console.info("Connecting to", session.hubUrl(), location.href);
         var c = channels.WebSocketChannel(session.hubUrl());
         c.onmessage = function (msg) {
           if (! readyForMessages) {
